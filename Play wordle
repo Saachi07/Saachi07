@@ -1,9 +1,9 @@
-from a2 import WordleWords
-from a2 import Guess
-from a2 import Wordle
-from a2 import TooLongError
-from a2 import TooShortError
-from a2 import NotLettersError
+from Wordle_main import WordleWords
+from Wordle_main import Guess
+from Wordle_main import Wordle
+from Wordle_main import TooLongError
+from Wordle_main import TooShortError
+from Wordle_main import NotLettersError
 
 class ConsolePlayer:
     '''
