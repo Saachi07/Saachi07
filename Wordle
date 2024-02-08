@@ -1,0 +1,139 @@
+from random import choice
+from collections.abc import MutableSet
+
+# If the word is too short it raises a TooShortError.
+class TooShortError(ValueError):  
+    def __init__(self, message):
+        super().__init__(message)
+
+# If the word is too long it raises a TooLongError.
+class TooLongError(ValueError): 
+    def __init__(self, message):
+        super().__init__(message)
+
+# If the word has anything other than the capital letters A-Z, it raises a NotLettersError.
+class NotLettersError(ValueError): 
+    def __init__(self, message):
+        super().__init__(message)
+
+
+class WordleWords(MutableSet):  
+    # initializes an empty set of words.
+    def __init__(self, letters):
+        self._words = set()
+        self.letters = letters
+
+    # checks if the word is in the set
+    def __contains__(self, word):
+        return word in self._words
+
+    # returns an iterator over all the words in the set
+    def __iter__(self):
+        return iter(self._words)
+
+    # return the number of words in the set.
+    def __len__(self):
+        return len(self._words)
+    
+    # add the word to the set
+    def add(self, word):
+        self.check_word(word)
+        self._words.add(word)
+
+    # remove a word from the set.
+    def discard(self, word):
+        self._words.discard(word)
+
+    # Add words to the set using the content of the file specified by the filename
+    def load_file(self, filename):
+        with open(filename, 'r') as file:
+            for line in file:
+                word = line.strip().upper()
+                if len(word) == self.letters:
+                    self.add(word)
+
+    # checks if the word entered is in correct format else raises error
+    def check_word(self, word):
+        if len(word) < self.letters:
+            raise TooShortError("Word is too short.")
+        
+        elif len(word) > self.letters:
+            raise TooLongError("Word is too long.")
+        
+        elif not word.isalpha() or not word.isupper():
+            raise NotLettersError("Word contains non-capital letters A-Z or non-alphabetic characters.")
+        
+
+    # Returns the number of letters in every word
+    def letters(self):
+        return self.letters
+    
+    # Returns a second WordleWords instance that contains the same word.
+    def copy(self):
+        new_instance = WordleWords(self.letters)
+        new_instance._words = self._words.copy()
+        return new_instance
+
+class Guess:
+    def __init__(self, guess, answer):
+        self._guess = guess
+        self._answer = answer
+
+    # returns the guess that the player made
+    def guess(self):
+        return self._guess
+    
+    # returns a string that is the same length as the answer
+    def correct(self):
+        return ''.join([char if char == self._answer[i] else '_' for i, char in enumerate(self._guess)])
+    
+    # return a sorted string that contains every letter that the player guessed if its in word but misplaced
+    def misplaced(self):
+        misplaced_chars = []
+        guess_list, answer_list = list(self._guess), list(self._answer)
+        for guess_letter, answer_letter in zip(self._guess, self._answer):
+            if guess_letter != answer_letter:
+                if guess_letter in answer_list:
+                    misplaced_chars.append(guess_letter)
+                else:
+                    guess_list.remove(guess_letter)
+            else:
+                guess_list.remove(guess_letter)
+                answer_list.remove(answer_letter)
+        return ''.join(sorted(misplaced_chars))
+    
+    # return a sorted string that contains every letter that the player guessed if its not in word
+    def wrong(self):
+        wrong_chars = []
+        guess_list, answer_list = list(self._guess), list(self._answer)
+        for guess_letter, answer_letter in zip(self._guess, self._answer):
+            if guess_letter != answer_letter:
+                if guess_letter not in answer_list:
+                    wrong_chars.append(guess_letter)
+                else:
+                    guess_list.remove(guess_letter)
+            else:
+                guess_list.remove(guess_letter)
+                answer_list.remove(answer_letter)
+        return ''.join(sorted(wrong_chars))
+
+    # return True if the guess was the same as the answer
+    def is_win(self):
+        return self._guess == self._answer
+
+class Wordle:
+
+    # It chooses a random word for the game
+    def __init__(self, words):
+        self.words = words
+        self.random_word = choice(list(self.words._words))
+        self.num_guesses = 0
+
+    # return the number of guesses the player has made so far
+    def guesses(self):
+        return self.num_guesses
+
+    # should take a string guessed and return a Guess instance object.
+    def guess(self, guessed):
+        self.num_guesses += 1
+        return Guess(guessed, self.random_word)
