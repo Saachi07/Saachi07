@@ -3,7 +3,9 @@
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
-  <a href="https://www.linkedin.com/in/saachi-gupta-736a13243/">
+  <a href="https://www.linkedin.com/in/your-linkedin-profile" target="_blank"> 
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /> 
+  </a>
 </p>
 
 <h3 align="left">Languages and Tools:</h3>
