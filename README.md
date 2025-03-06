@@ -31,4 +31,4 @@
 
 <p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=saachi07&show_icons=true&locale=en&theme=dracula" alt="saachi07" /></p>
 
-<p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=saachi07&theme=dracula" alt="saachi07" /></p>
+
