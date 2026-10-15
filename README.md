@@ -18,7 +18,7 @@
   </a>
 </p>
 
-Third-year CS student at UAlberta studying AI. Currently doing research under Prof. Witold Pedrycz, where I built a decision support platform that combines LLMs with the Analytic Hierarchy Process. I also lead hardware at [NeurAlbertaTech](https://neuralbertatech.com), an NPO.
+Third-year CS student at UAlberta studying AI. Currently doing research under Prof. Xiaoqi Tan, where I work on algorithms, bandits, and LLMs. I also lead hardware at [NeurAlbertaTech](https://neuralbertatech.com), an NPO.
 
 ---
 
