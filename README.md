@@ -1,7 +1,7 @@
 <h1 align="center">Hi, I'm Saachi 👋</h1>
 
 <p align="center">
-  Third-year CS @ UAlberta &nbsp;·&nbsp; AI specialization &nbsp;·&nbsp; Edmonton, AB
+  Fourth-year CS @ UAlberta &nbsp;·&nbsp; AI specialization &nbsp;·&nbsp; Edmonton, AB
 </p>
 
 <p align="center">
